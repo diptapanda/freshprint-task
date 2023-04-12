@@ -1,0 +1,29 @@
+.input-group-text {
+    background: #fff;
+}
+
+.form-control,
+.input-group-text {
+    border-radius: 0;
+
+    &:focus {
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        outline: 0;
+        box-shadow: 0 0 0 0 rgb(196 155 155 / 25%);
+    }
+}
+
+.box {
+    min-width: 35rem;
+}
+
+table {
+    img {
+        max-height: 100px;
+    }
+    td {
+        vertical-align: middle;
+    }
+}

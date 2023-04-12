@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center align-item-center">
+    <div class="py-5 box">
+        <h3 class="text-center">Your Searched History</h3>
+
+        <table class="table border-0" *ngIf="allSearchedUser.length">
+            <thead>
+                <tr>
+                    <td>User Image</td>
+                    <td class="text-end">Github User Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of allSearchedUser; let i = index;">
+                    <td>
+                        <!-- <img
+                            [src]="user.avatar_url ? user.avatar_url : 'https://cdn-icons-png.flaticon.com/512/2748/2748558.png'"> -->
+                        <img
+                            [src]="allSearchedUser[allSearchedUser.length - (i+1)].avatar_url ? allSearchedUser[allSearchedUser.length - (i+1)].avatar_url : 'https://cdn-icons-png.flaticon.com/512/2748/2748558.png'">
+                    </td>
+                    <td class="text-end">
+                        <!-- {{user.login}} -->
+                        {{allSearchedUser[allSearchedUser.length - (i+1)].login}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success w-100 rounded-0" (click)="clearHistory()">Clear History</button>
+    </div>
+</div>

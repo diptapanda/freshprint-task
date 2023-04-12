@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center align-item-center">
+    <div class="py-5 box">
+        <h3 class="text-center">{{title}}</h3>
+        <form [formGroup]="githubForm" (ngSubmit)="searchUserdetails(githubForm)">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                    <svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20">
+                        <path
+                            d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+                            stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                            stroke-linejoin="round">
+                        </path>
+                    </svg>
+                </span>
+                <input type="text" class="form-control border-start-0" placeholder="Username" aria-label="Username"
+                    aria-describedby="basic-addon1" formControlName="searchQuery">
+            </div>
+            <!-- <small class="text-danger" *ngIf="githubForm.get('searchQuery')?.invalid && (githubForm.get('searchQuery')?.dirty || githubForm.get('searchQuery')?.touched)">
+                Please provide a username.
+            </small> -->
+            <button class="btn btn-success w-100 rounded-0" type="submit" *ngIf="!isLoading">Search</button>
+            <button class="btn btn-success w-100 rounded-0" type="button" disabled *ngIf="isLoading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+            </button>
+        </form>
+        <h6 class="mt-3" *ngIf="listSearchedData.length">Search Result</h6>
+        <table class="table border-0" *ngIf="listSearchedData.length">
+            <thead>
+                <tr>
+                    <td>User Image</td>
+                    <td class="text-end">Github User Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of listSearchedData; let i = index;">
+                    <td>
+                        <!-- <img
+                            [src]="user.avatar_url ? user.avatar_url : 'https://cdn-icons-png.flaticon.com/512/2748/2748558.png'"> -->
+                        <img
+                            [src]="listSearchedData[listSearchedData.length - (i+1)].avatar_url ? listSearchedData[listSearchedData.length - (i+1)].avatar_url : 'https://cdn-icons-png.flaticon.com/512/2748/2748558.png'">
+                    </td>
+                    <td class="text-end">
+                        <!-- {{user.login}} -->
+                        {{listSearchedData[listSearchedData.length - (i+1)].login}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
